@@ -1,39 +1,43 @@
-ion-content {
-  --padding-start: 20px;
-  --padding-end: 20px;
+.form-container {
+  max-width: 500px;
+  margin: auto;
 }
 
-ion-title {
-  font-size: 22px;
+ion-card {
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+ion-card-title {
+  font-size: 18px;
   font-weight: bold;
 }
 
-ion-item {
-  margin-bottom: 15px;
-  border-radius: 10px;
-  --inner-padding-end: 10px;
-  --inner-padding-start: 10px;
+.input-box {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-size: 16px;
+  color: #000;
+  --highlight-color-focused: transparent;
+  --border-color: #ccc;
+  --background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-ion-button {
-  margin-top: 10px;
-}
 
-ion-button[expand="block"] {
-  margin-top: 20px;
+.radio-row ion-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .calcular-btn {
-  font-weight: bold;
+  margin-top: 20px;
   font-size: 16px;
-}
-
-.discreto-btn {
-  --background: #e0e0e0;
-  --color: #444;
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .resultado {
@@ -41,4 +45,16 @@ ion-button[expand="block"] {
   font-size: 20px;
   font-weight: bold;
   color: var(--ion-color-primary);
+}
+
+@media (max-width: 400px) {
+  .form-container {
+    padding: 0 10px;
+  }
+  ion-card-title {
+    font-size: 16px;
+  }
+  ion-button {
+    font-size: 14px;
+  }
 }
