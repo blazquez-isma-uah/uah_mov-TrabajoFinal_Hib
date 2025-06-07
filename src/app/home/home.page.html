@@ -1,20 +1,64 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title class="ion-text-center">Calcula tu Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Total de la cuenta</ion-label>
+    <ion-input type="number" [(ngModel)]="total"></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label position="floating">Nº de comensales</ion-label>
+    <ion-input type="number" [(ngModel)]="personas"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none" class="propina-item">
+    <ion-label>
+      Propina<br>
+      <span class="propina-porcentaje">{{ propina }}%</span>
+    </ion-label>
+  </ion-item>
+
+  <ion-radio-group [(ngModel)]="propina" *ngIf="!customTip">
+    <ion-item>
+      <ion-label>15%</ion-label>
+      <ion-radio value="15"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>20%</ion-label>
+      <ion-radio value="20"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>25%</ion-label>
+      <ion-radio value="25"></ion-radio>
+    </ion-item>
+    <ion-item (click)="activarPropinaPersonalizada()">
+      <ion-label>Personalizada</ion-label>
+      <ion-radio></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+
+  <ion-item *ngIf="customTip">
+    <ion-range min="0" max="100" step="1" [(ngModel)]="propina">
+      <ion-label slot="start">0%</ion-label>
+      <ion-label slot="end">100%</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <ion-button expand="block" fill="clear" class="discreto-btn" *ngIf="customTip" (click)="volverARadio()">
+    Usar propinas predeterminadas
+  </ion-button>
+
+
+  <ion-button expand="block" color="primary" (click)="calcular()" class="calcular-btn">
+    Calcular
+  </ion-button>
+
+  <ion-text *ngIf="resultado > 0" class="ion-text-center resultado">
+    <p>Cada persona pagará: ${{ resultado.toFixed(2) }}</p>
+  </ion-text>
+
 </ion-content>
